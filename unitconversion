@@ -1,0 +1,399 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+
+<head> 
+	<meta charset="UTF-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=2.0"> 
+	<title>GFG Converter</title> 
+	<style> 
+		body { 
+			background-color: black;  /* background color of website - https://www.nanoscaleoptics.com/*/
+			display: flex; 
+			justify-content: flex-start; 
+			align-items: flex-start; 
+			height: 100vh; 
+			margin: 0; 
+			font-family: Georgia, serif; 
+			overflow: hidden; 
+            color: white;
+		} 
+		.main { 
+			background:rgba(217,210,255,0.2); 
+			padding: 20px; 
+			border-radius: 15px; 
+			box-shadow: 0 8px 12px rgba(100, 100, 100, 0.5); 
+			backdrop-filter: blur(5px); 
+			text-align: left; 
+			animation: fadeIn 0.5s ease-in-out; 
+            color: white;
+            font-family: Georgia, serif; 
+            
+		} 
+		@keyframes fadeIn { 
+			from { 
+				opacity: 0; 
+			} 
+			to { 
+				opacity: 1; 
+			} 
+		} 
+		.title { 
+			font-size: 36px; 
+			color: green; 
+            font-family: Monospace, Helvetica;  
+            
+		} 
+		.subtitle { 
+			margin: 0; 
+			font-size: 18px; 
+			color: white; 
+            font-family: Georgia, serif; 
+            padding-bottom:10px;
+		} 
+
+		.select-category {
+        background: rgba(50, 50, 50, 0.7);
+        color: white;
+        font-family: Monospace, Helvetica;  
+        padding: 10px;
+        font-size: 18px; 
+        border-radius: 5px
+        }
+        
+        
+		.unit-select{
+        	background: rgba(50, 50, 50,0.8);
+        	color: white;
+        	padding: 5px;
+        	font-size: 18px; 
+            border-radius: 5px;
+            font-family: Monospace, Helvetica; 
+        }
+		.input { 
+			padding: 12px; 
+			font-size: 20px; 
+			border: none; 
+			background: rgba(50, 50, 50, 0.4); 
+			color: white; 
+		} 
+		.arrow { 
+			font-size: 20px; 
+			color: #3494e6; 
+            
+		} 
+        .unit-selected {
+        	background: rgba(50, 50, 50,0.8);
+        	color: white;
+        	padding: 5px;
+        	font-size: 18px; 
+            border-radius: 5px;
+            font-family: Monospace, Helvetica; 
+        }
+        
+
+		.result { 
+			background: rgba(255, 255, 255, 0.3); 
+			padding: 10px; 
+            font-family: Monospace, Helvetica; 
+			margin-left: auto;
+            margin-top:10px;
+			border-radius: 5px; 
+			animation: fadeIn 0.5s ease-in-out; 
+            text-align:centre;
+		} 
+		.result p { 
+			font-size: 18px; 
+			color: white; 
+            padding: 10px; 
+		} 
+		.conversion { 
+        	padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px; 
+            padding-right: 20px; 
+			background: rgba(255,255, 255, 0.3); 
+			margin: 10px; 
+			border-radius: 5px;  
+			transition: transform 0.3s, box-shadow 0.3s; 
+			animation: fadeIn 0.5s ease-in-out; 
+            text-align:justify;
+            
+		} 
+        .topbox {
+       		background: rgba(255,255, 255, 0.3); 
+			padding: 20px; 
+			margin: 10px; 
+			border-radius: 5px;  
+			transition: transform 0.3s, box-shadow 0.3s; 
+			animation: fadeIn 0.5s ease-in-out; 
+        }
+        
+        .user_entry {
+        	background: rgba(50, 50, 50, 1);
+        	color: white;
+        	font-family: Monospace, Helvetica; 
+        	padding: 5px;
+        	font-size: 18px; 
+            border-radius: 5px
+        
+        }
+	</style> 
+</head> 
+
+<body> 
+	<div class="main"> 
+		<h1 class="title"></h1> 
+		<h2>Behrad's Unit Converter</h2> 
+		<div class="topbox">
+		<h5 class="subtitle">Select Category</h5> 
+		<select id="conversionCategory" class="select-category"> 
+			<option value="">- Select -</option> 
+			<option value="temperature">Temperature</option> 
+			<option value="area">Area</option> 
+			<option value="weight">Weight</option> 
+			<option value="length">Length</option> 
+			<option value="time">Time</option> 
+		</select> 
+	</div>
+		<div class="container"> 
+          <!-- Temperature Conversion -->
+ <div class="conversion" id="temperature">
+        <h2 class="subtitle">Temperature Conversion</h2>
+        <input type="number" id="temperatureInput" placeholder="Enter value" class="user_entry">
+        <select id="fromTemperatureUnit" class="unit-selected">
+            <option class="unit-select" value="celsius">Celsius</option>
+            <option class="unit-select" value="fahrenheit">Fahrenheit</option>
+            <option class="unit-select" value="kelvin">Kelvin</option>
+        </select>
+        to
+        <select id="toTemperatureUnit" class="unit-selected">
+            <option class="unit-select" value="celsius">Celsius</option>
+            <option class="unit-select" value="fahrenheit">Fahrenheit</option>
+            <option class="unit-select" value="kelvin">Kelvin</option>
+        </select>
+        <div class="result" id="temperatureResult"></div>
+    </div>
+
+    <!-- Area Conversion -->
+    <div class="conversion" id="area">
+        <h2 class="subtitle">Area Conversion</h2>
+        <input type="number" id="areaInput" placeholder="Enter value" class="user_entry">
+        <select id="fromAreaUnit" class="unit-selected">
+            <option class="unit-select" value="sqMeter">Square Meter</option>
+            <option class="unit-select" value="sqKilometer">Square Kilometer</option>
+            <option class="unit-select" value="sqCentimeter">Square Centimeter</option>
+            <option class="unit-select" value="acre">Acre</option>
+        </select>
+        to
+        <select id="toAreaUnit" class="unit-selected">
+            <option class="unit-select" value="sqMeter">Square Meter</option>
+            <option class="unit-select" value="sqKilometer">Square Kilometer</option>
+            <option class="unit-select" value="sqCentimeter">Square Centimeter</option>
+            <option class="unit-select" value="acre">Acre</option>
+        </select>
+        <div class="result" id="areaResult"></div>
+    </div>
+
+    <!-- Weight Conversion -->
+    <div class="conversion" id="weight" class="unit-selected">
+        <h2 class="subtitle">Weight Conversion</h2>
+        <input type="number" id="weightInput" placeholder="Enter value" class="user_entry">
+        <select id="fromWeightUnit" class="unit-selected">
+            <option class="unit-select" value="gram">Gram</option>
+            <option class="unit-select" value="kilogram">Kilogram</option>
+            <option class="unit-select" value="pound">Pound</option>
+        </select>
+        to
+        <select id="toWeightUnit" class="unit-selected">
+            <option class="unit-select" value="gram">Gram</option>
+            <option class="unit-select" value="kilogram">Kilogram</option>
+            <option class="unit-select" value="pound">Pound</option>
+        </select>
+        <div class="result" id="weightResult"></div>
+    </div>
+
+    <!-- Length Conversion -->
+    <div class="conversion" id="length">
+        <h2 class="subtitle">Length Conversion</h2>
+        <input type="number" id="lengthInput" placeholder="Enter value" class="user_entry">
+        <select id="fromLengthUnit" class="unit-selected">
+         	<option class="unit-select" value="centimeter">Centimeter</option>
+            <option class="unit-select" value="meter">Meter</option>
+            <option class="unit-select" value="kilometer">Kilometer</option>
+            <option class="unit-select" value="mile">Mile</option>
+            <option class="unit-select" value="foot">Feet</option>
+            <option class="unit-select" value="inch">Inch</option>
+        </select>
+        to
+        <select id="toLengthUnit" class="unit-selected">
+         	<option class="unit-select" value="centimeter">Centimeter</option>
+            <option class="unit-select" value="meter">Meter</option>
+            <option class="unit-select" value="meter">Meter</option>
+            <option class="unit-select" value="kilometer">Kilometer</option>
+            <option class="unit-select" value="mile">Mile</option>
+            <option class="unit-select" value="foot">Feet</option>
+            <option class="unit-select" value="inch">Inch</option>
+        </select>
+        <div class="result" id="lengthResult"></div>
+    </div>
+
+    <!-- Time Conversion -->
+    <div class="conversion" id="time">
+        <h2 class="subtitle">Time Conversion</h2>
+        <input type="number" id="timeInput" placeholder="Enter value "  class="user_entry">
+        <select id="fromTimeUnit" class="unit-selected">
+            <option class="unit-select" value="second">Second</option>
+            <option class="unit-select" value="minute">Minute</option>
+            <option class="unit-select" value="hour">Hour</option>
+        </select>
+        to
+        <select id="toTimeUnit" class="unit-selected">
+            <option class="unit-select" value="second">Second</option>
+            <option class="unit-select" value="minute">Minute</option>
+            <option class="unit-select" value="hour">Hour</option>
+        </select>
+        <div class="result" id="timeResult"></div>
+    </div>
+		</div> 
+	</div> 
+	<script>
+	// Get references to all conversion forms
+	let inputforms = document.querySelectorAll(".conversion");
+	inputforms.forEach((form) => (form.style.display = "none"));
+
+	// Handle category selection
+	let category = document.getElementById("conversionCategory");
+	category.addEventListener("change", function () {
+		let userInput = category.value;
+		inputforms.forEach((form) => (form.style.display = "none"));
+		document.getElementById(userInput).style.display = "block";
+	});
+
+	// Add event listeners to handle input dynamically
+	document.getElementById("temperatureInput")?.addEventListener("input", tempFn);
+	document.getElementById("fromTemperatureUnit")?.addEventListener("change", tempFn);
+	document.getElementById("toTemperatureUnit")?.addEventListener("change", tempFn);
+
+	document.getElementById("areaInput")?.addEventListener("input", areaFn);
+	document.getElementById("fromAreaUnit")?.addEventListener("change", areaFn);
+	document.getElementById("toAreaUnit")?.addEventListener("change", areaFn);
+
+	document.getElementById("weightInput")?.addEventListener("input", weightFn);
+	document.getElementById("fromWeightUnit")?.addEventListener("change", weightFn);
+	document.getElementById("toWeightUnit")?.addEventListener("change", weightFn);
+
+	document.getElementById("lengthInput")?.addEventListener("input", lengthFn);
+	document.getElementById("fromLengthUnit")?.addEventListener("change", lengthFn);
+	document.getElementById("toLengthUnit")?.addEventListener("change", lengthFn);
+
+	document.getElementById("timeInput")?.addEventListener("input", timeFn);
+	document.getElementById("fromTimeUnit")?.addEventListener("change", timeFn);
+	document.getElementById("toTimeUnit")?.addEventListener("change", timeFn);
+
+	function tempFn() {
+		let valInput = parseFloat(document.getElementById("temperatureInput").value) || 0;
+		let fromUnit = document.getElementById("fromTemperatureUnit").value;
+		let toUnit = document.getElementById("toTemperatureUnit").value;
+		let result;
+		if (fromUnit === "celsius" && toUnit === "fahrenheit") {
+			result = (valInput * 9) / 5 + 32;
+		} else if (fromUnit === "celsius" && toUnit === "kelvin") {
+			result = valInput + 273.15;
+		} else if (fromUnit === "fahrenheit" && toUnit === "celsius") {
+			result = ((valInput - 32) * 5) / 9;
+		} else if (fromUnit === "fahrenheit" && toUnit === "kelvin") {
+			result = ((valInput - 32) * 5) / 9 + 273.15;
+		} else if (fromUnit === "kelvin" && toUnit === "celsius") {
+			result = valInput - 273.15;
+		} else if (fromUnit === "kelvin" && toUnit === "fahrenheit") {
+			result = ((valInput - 273.15) * 9) / 5 + 32;
+		} else {
+			result = valInput;
+		}
+		document.getElementById("temperatureResult").textContent = `Result: ${result.toFixed(2)} ${toUnit}`;
+	}
+
+	function areaFn() {
+		let valInput = parseFloat(document.getElementById("areaInput").value) || 0;
+		let fromUnit = document.getElementById("fromAreaUnit").value;
+		let toUnit = document.getElementById("toAreaUnit").value;
+		let conversionFactors = {
+			sqMeter: 1,
+			sqKilometer: 0.000001,
+			sqCentimeter: 10000,
+			sqMillimeter: 1000000,
+			acre: 0.000247105,
+			hectare: 0.0001,
+			sqMile: 3.861e-7,
+			sqYard: 1.19599,
+			sqFoot: 10.7639,
+			sqInch: 1550.0031,
+		};
+		let result =
+			valInput * (conversionFactors[toUnit] / conversionFactors[fromUnit]);
+		document.getElementById("areaResult").textContent = `Result: ${result.toFixed(2)} ${toUnit}s`;
+	}
+
+	function weightFn() {
+		let valInput = parseFloat(document.getElementById("weightInput").value) || 0;
+		let fromUnit = document.getElementById("fromWeightUnit").value;
+		let toUnit = document.getElementById("toWeightUnit").value;
+		let conversionFactors = {
+			gram: 1,
+			kilogram: 0.001,
+			milligram: 1000,
+			metricTon: 0.000001,
+			longTon: 0.000984207,
+			shortTon: 0.00110231,
+			pound: 0.00220462,
+			ounce: 0.03527396,
+			carat: 5,
+		};
+		let result =
+			valInput * (conversionFactors[toUnit] / conversionFactors[fromUnit]);
+		document.getElementById("weightResult").textContent = `Result: ${result.toFixed(2)} ${toUnit}s`;
+	}
+
+	function lengthFn() {
+		let valInput = parseFloat(document.getElementById("lengthInput").value) || 0;
+		let fromUnit = document.getElementById("fromLengthUnit").value;
+		let toUnit = document.getElementById("toLengthUnit").value;
+		let conversionFactors = {
+			meter: 1,
+			kilometer: 0.001,
+			centimeter: 100,
+			millimeter: 1000,
+			mile: 0.000621371,
+			yard: 1.09361,
+			foot: 3.28084,
+			inch: 39.3701,
+		};
+		let result =
+			valInput * (conversionFactors[toUnit] / conversionFactors[fromUnit]);
+		document.getElementById("lengthResult").textContent = `Result: ${result.toFixed(2)} ${toUnit}s`;
+	}
+
+	function timeFn() {
+		let valInput = parseFloat(document.getElementById("timeInput").value) || 0;
+		let fromUnit = document.getElementById("fromTimeUnit").value;
+		let toUnit = document.getElementById("toTimeUnit").value;
+		let conversionFactors = {
+			second: 1,
+			millisecond: 1000,
+			minute: 1 / 60,
+			hour: 1 / 3600,
+			day: 1 / 86400,
+			week: 1 / 604800,
+			month: 1 / 2628000,
+			year: 1 / 31536000,
+		};
+		let result =
+			valInput * (conversionFactors[toUnit] / conversionFactors[fromUnit]);
+		document.getElementById("timeResult").textContent = `Result: ${result.toFixed(2)} ${toUnit}s`;
+	}
+</script>
+
+</body> 
+
+</html>
+
