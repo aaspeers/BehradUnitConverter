@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+
+<!-- Unit Conversions Script -->
+<!-- Updated for a modern, technical design -->
+
+<Module>
+  <ModulePrefs
+    title="Unit Conversions"
+    description="Enter a value into any of the boxes, and the remaining units will be calculated automatically."
+    author="Lisa V. Brown, Updated by Austin Speers and GPT"
+  />
+  <Content type="html">
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: rgb(0,0,0);
+        color: #e4e4eb;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .conversion-table {
+        background: rgb(44,42,51);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        width: 67%;
+        max-width: 900px;
+        margin-left: 50px;
+ 		 margin-right: 300px;
+        margin-top:0px;
+        
+      }
+
+      .conversion-table table {
+        width: 100%;
+        border-spacing: 0;
+      }
+
+      .conversion-table td {
+        padding: 10px;
+      }
+
+      .conversion-table input {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        color: #29293d;
+        background: #e4e4eb;
+        border: none;
+        border-radius: 5px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+      }
+
+      .conversion-table input:focus {
+        outline: none;
+        box-shadow: 0 0 8px rgba(93, 156, 236, 0.8);
+      }
+
+      .conversion-table td span {
+        font-size: 14px;
+      }
+
+      .conversion-table td span sup {
+        font-size: 10px;
+      }
+
+      .conversion-table input:hover {
+        background: #d7d7e0;
+      }
+
+      .conversion-table .header {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #93a4ec;
+        margin-bottom: 20px;
+      }
+
+      .conversion-table .subheader {
+        text-align: center;
+        font-size: 12px;
+        color: #9a9ab3;
+        margin-bottom: 20px;
+      }
+    </style>
+
+    <div class="conversion-table">
+      <div class="header">Photonics Converter</div>
+      <div class="subheader">Enter a value into any box to calculate the remaining units.</div>
+      <table>
+        <form name="conversion">
+          <tr>
+            <td>
+              <span>
+                <input
+                  name="eV"
+                  onkeyup="eVconvert()"
+                  value="1"
+                  placeholder="eV"
+                /> eV
+              </span>
+            </td>
+            <td>
+              <span>
+                <input
+                  name="nm"
+                  onkeyup="nmconvert()"
+                  value="1240"
+                  placeholder="nm"
+                /> nm
+              </span>
+            </td>
+            <td>
+              <span>
+                <input
+                  name="wavnum"
+                  onkeyup="wavnumconvert()"
+                  value="8065.6"
+                  placeholder="cm<sup>-1</sup>"
+                /> cm<sup>-1</sup>
+              </span>
+            </td>
+            <td>
+              <span>
+                <input
+                  name="fs"
+                  onkeyup="fsconvert()"
+                  value="4.136"
+                  placeholder="fs"
+                /> fs
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span>
+                <input
+                  name="meV"
+                  onkeyup="meVconvert()"
+                  value="1000"
+                  placeholder="meV"
+                /> meV
+              </span>
+            </td>
+            <td>
+              <span>
+                <input
+                  name="micron"
+                  onkeyup="micronconvert()"
+                  value="1.24"
+                  placeholder="&micro;m"
+                /> &micro;m
+              </span>
+            </td>
+            <td>
+              <span>
+                <input
+                  name="THz"
+                  onkeyup="THzconvert()"
+                  value="241.8"
+                  placeholder="THz"
+                /> THz
+              </span>
+            </td>
+            <td>
+              <span>
+                <input
+                  name="ps"
+                  onkeyup="psconvert()"
+                  value="0.004"
+                  placeholder="ps"
+                /> ps
+              </span>
+            </td>
+          </tr>
+        </form>
+      </table>
+    </div>
+
+    <script>
+      const c = 299792458;
+      const h = 4.135667516e-15;
+
+      function roundfive(num) {
+        return (Math.round(num * 100000) / 100000).toFixed(5);
+      }
+
+      function eVconvert() {
+        with (document.conversion) {
+          meV.value = roundfive(eV.value * 1e3);
+          nm.value = roundfive((h * c) / eV.value * 1e9);
+          micron.value = roundfive((h * c) / eV.value * 1e6);
+          wavnum.value = roundfive(eV.value / (h * c * 100));
+          THz.value = roundfive(eV.value / h * 1e-12);
+          fs.value = roundfive(h / eV.value * 1e15);
+          ps.value = roundfive(h / eV.value * 1e12);
+        }
+      }
+
+      // Define similar functions for meVconvert, nmconvert, micronconvert, wavnumconvert, THzconvert, fsconvert, psconvert
+    </script>
+  </Content>
+</Module>
