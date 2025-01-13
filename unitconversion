@@ -30,7 +30,7 @@
             font-family: Georgia, serif; 
             margin-top: 10px;
             margin-left: 10px;
-            width: 1200px;
+            width: 700px;
             transition-duration: 0.2s;
             backface-visibility: hidden;
             transform: translateZ(0);
@@ -285,7 +285,6 @@
     </div>
 		</div> 
 	</div> 
-            <button type="button" class="toggle" >Photonics Calulator </button>
 	<script>
 	// Get references to all conversion forms
 	let inputforms = document.querySelectorAll(".conversion");
