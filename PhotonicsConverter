@@ -7,7 +7,7 @@
   <ModulePrefs
     title="Unit Conversions"
     description="Enter a value into any of the boxes, and the remaining units will be calculated automatically."
-    author="Lisa V. Brown, Updated by Austin Speers and GPT"
+    author="Lisa V. Brown, Updated by Austin Speers"
   />
   <Content type="html">
     <style>
